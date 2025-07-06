@@ -1,10 +1,13 @@
-namespace MobileAutomationNotes
+using OpenQA.Selenium;
+
+namespace MobileAutomationNotes : AndroidTestBase
 {
-    public class Tests
+    public class InputTests
     {
         [SetUp]
         public void Setup()
         {
+            Assert.IsNotNull(_driver.Context);
         }
 
         [Test]

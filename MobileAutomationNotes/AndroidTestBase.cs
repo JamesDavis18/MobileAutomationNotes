@@ -16,10 +16,10 @@ namespace MobileAutomationNotes
             var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_HOST") ?? "http://127.0.0.1:4723/wd/hub");
             options = new AppiumOptions();
             options.PlatformName = "Android";
-            options.DeviceName = "Emulator-5554";
+            options.DeviceName = "46131FDAP006EC";
 
             options.AddAdditionalAppiumOption("appPackage", Environment.GetEnvironmentVariable("APPIUM_APP_PATH") ?? "/path/to/your/app.apk");
-            options.AddAdditionalAppiumOption("appActivity", ".Settings");
+            options.AddAdditionalAppiumOption("appActivity", ".BrowseActivity");
             options.AddAdditionalAppiumOption("noReset", true);
 
             _driver = new AndroidDriver(serverUri, options, TimeSpan.FromSeconds(180));

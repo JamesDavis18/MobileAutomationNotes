@@ -7,7 +7,7 @@ using OpenQA.Selenium.Appium.Android;
 namespace MobileAutomationNotes
 {
     [TestFixture]
-    public class InputTests : AndroidTestBase
+    public class InputTests : SetupFixture
     {
         [OneTimeSetUp]
         public virtual void OneTimeSetup()
@@ -26,7 +26,7 @@ namespace MobileAutomationNotes
         public void CreateNewNoteTest()
         {
             _driver.StartActivity("com.android.keep", ".Keep");
-            _driver.FindElement(By.TagName()
+            _driver.FindElement(By.TagName());
             Assert.Pass();
         }
 

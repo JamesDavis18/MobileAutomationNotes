@@ -16,7 +16,8 @@ namespace MobileAutomationNotes
             var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_HOST") ?? "http://127.0.0.1:4723/wd/hub");
             options = new AppiumOptions();
             options.PlatformName = "Android";
-            options.DeviceName = "46131FDAP006EC";
+            //options.DeviceName = "46131FDAP006EC";
+            options.DeviceName = "R83X80F2ZGY";
 
             options.AddAdditionalAppiumOption("appPackage", Environment.GetEnvironmentVariable("APPIUM_APP_PATH") ?? "/path/to/your/app.apk");
             options.AddAdditionalAppiumOption("appActivity", ".BrowseActivity");

@@ -1,0 +1,7 @@
+{
+  "appium:platformName": "Android",
+  "appium:deviceName": "R83X80F2ZGY",
+  "appium:appPackage": "com.google.android.keep",
+  "appium:appActivity": ".BrowseActivity",
+  "appium:automationName": "UiAutomator2"
+}

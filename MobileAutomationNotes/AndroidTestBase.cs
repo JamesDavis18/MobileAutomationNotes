@@ -19,7 +19,7 @@ namespace MobileAutomationNotes
             //options.DeviceName = "46131FDAP006EC";
             options.DeviceName = "R83X80F2ZGY";
 
-            options.AddAdditionalAppiumOption("appPackage", Environment.GetEnvironmentVariable("APPIUM_APP_PATH") ?? "/path/to/your/app.apk");
+            options.AddAdditionalAppiumOption("appPackage", Environment.GetEnvironmentVariable("APPIUM_APP_PATH") ?? "/Internal shared storage/Android/data/com.google.android.keep.apk");
             options.AddAdditionalAppiumOption("appActivity", ".BrowseActivity");
             options.AddAdditionalAppiumOption("noReset", true);
 

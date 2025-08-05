@@ -9,6 +9,8 @@ namespace MobileAutomationNotes
     [TestFixture]
     public class InputTests : SetupFixture
     {
+        public string appName = "com.google.android.keep";
+
         [OneTimeSetUp]
         public virtual void OneTimeSetup()
         {
@@ -25,8 +27,11 @@ namespace MobileAutomationNotes
         [Test]
         public void CreateNewNoteTest()
         {
-            _driver.StartActivity("com.android.keep", ".Keep");
-            _driver.FindElement(By.TagName());
+            _driver.ActivateApp(appName, TimeSpan.FromSeconds(5));
+            _driver.GetAppState("");
+            AppiumElement baseLayout = _driver.FindElement(By.XPath("//android.widget.LinearLayout[@resource-id='com.google.android.keep:id / action_bar_root']"));
+            baseLayout.Click();
+            _driver.FindElement(By.TagName("body")).Text;
             Assert.Pass();
         }
 

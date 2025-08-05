@@ -13,7 +13,7 @@ namespace MobileAutomationNotes
         [OneTimeSetUp]
         public virtual void OneTimeSetUp()
         {
-            var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_HOST") ?? "http://10.5.0.2:4723/wd/hub");
+            var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_HOST") ?? "http://127.0.0.1:4723/wd/hub");
             options = new AppiumOptions();
             options.PlatformName = "Android";
             //options.DeviceName = "46131FDAP006EC";

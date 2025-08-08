@@ -1,0 +1,18 @@
+{
+  "appium:platformName": "Android",
+  "appium:deviceName": "SM-X115",
+  "appium:udid": "192.168.178.32:5555",
+  "appium:appPackage": "com.google.android.keep",
+  "appium:appActivity": "activities.BrowseActivity",
+  "appium:automationName": "UiAutomator2",
+  "appium:noReset": true
+}
+//{
+//  "appium:platformName": "Android",
+//  "appium:deviceName": "Pixel 9 Pro",
+//  "appium:udid": "192.168.178.32:5555",
+//  "appium:appPackage": "com.google.android.keep",
+//  "appium:appActivity": "activities.BrowseActivity",
+//  "appium:automationName": "UiAutomator2",
+//  "appium:noReset": true
+//}

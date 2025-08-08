@@ -1,8 +1,0 @@
-{
-  "appium:platformName": "Android",
-  "appium:deviceName": "Pixel 9 Pro",
-  "appium:udid": "46131FDAP006EC",
-  "appium:appPackage": "com.google.android.keep",
-  "appium:appActivity": ".BrowseActivity",
-  "appium:automationName": "UiAutomator2"
-}

@@ -23,7 +23,7 @@ namespace MobileAutomationNotes
 
 
         [OneTimeSetUp]
-        public virtual void OneTimeSetup()
+        public override void OneTimeSetUp()
         {
             base.OneTimeSetUp();
             
@@ -102,7 +102,10 @@ namespace MobileAutomationNotes
                 By.XPath("//android.support.v7.widget.RecyclerView[@resource-id=\"com.google.android.keep:id/bs_popup_list\"]/android.widget.LinearLayout[1]" 
                 + "//android.widget.TextView[@resource-id=\"com.google.android.keep:id/menu_text\" and @text=\"Delete\"]"));
             recyclerViewDelete.Click();
-            Assert.That(title1.Displayed, Is.EqualTo(false) && Assert.That(body1.Displayed, Is.EqualTo(false),"");
+            Assert.IsFalse(
+                title1.Displayed && body1.Displayed,
+                "Either element1 or elemen2 is not displayed"
+            );
 
 
 
@@ -128,7 +131,7 @@ namespace MobileAutomationNotes
         }
 
         [OneTimeTearDown]
-        public virtual void OneTimeTearDown()
+        public override void OneTimeTearDown()
         {
             base.OneTimeTearDown();
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
-using Nunit.Framework;
+using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 
@@ -10,7 +10,7 @@ namespace MobileAutomationNotes
 	public class SetupFixture : AndroidTestBase
 	{
 		[OneTimeSetUp]
-		public void GlobalSetup()
+		public override void OneTimeSetUp()
 		{
 			//var serverUri = new Uri(Environment.GetEnvironmentVariable("APPIUM_HOST") ?? ("http://localhost:4723/wd/hub"));
 			//var driverOptions = MobileAutomationNotes.DriverManager(options);
@@ -22,7 +22,7 @@ namespace MobileAutomationNotes
 		}
 
 		[OneTimeTearDown]
-		public void GlobalTeardown()
+		public override void OneTimeTearDown()
 		{
 			base.OneTimeTearDown();
             // Code to run after all tests in the assembly

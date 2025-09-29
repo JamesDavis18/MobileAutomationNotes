@@ -14,11 +14,36 @@ namespace MobileAutomationNotes
     {
         public string appName = "com.google.android.keep";
         public string displayedPropertyName = "displayed";
+        public string baseLayoutXPath = "android.widget.LinearLayout[@resource-id='com.google.android.keep:id / action_bar_root']";
 
         public bool CheckElementIsDisplayed(AppiumElement element)
         {
             bool isElementDisplayed = element.Displayed;
             return isElementDisplayed;
+        }
+
+        private AppiumElement? GetBaseLayout(string xPath = "//android.widget.LinearLayout[@resource]")
+        {
+
+            try
+            {
+                var baseLayoutElement = _driver.FindElement(By.XPath(baseLayoutXPath));
+                Assert.That(baseLayoutElement.Displayed, Is.EqualTo(true), "Base app element not visible. Test cannot continue");
+                if (baseLayoutElement.Displayed)
+                {
+                    return baseLayoutElement;
+                }
+                else
+                {
+                    TestContext.WriteLine($"Base layout element found but not displayed");
+                    return null;
+                }
+            }
+            catch (NoSuchElementException)
+            {
+                TestContext.WriteLine($"Base layout element not found with XPath:{xPath}");
+                return null;
+            }
         }
 
 
@@ -40,7 +65,7 @@ namespace MobileAutomationNotes
         [Test, Order(1)]
         public void CreateNewNoteTest()
         {
-            AppiumElement baseLayout = _driver.FindElement(By.XPath("//android.widget.LinearLayout[@resource-id='com.google.android.keep:id / action_bar_root']"));
+            AppiumElement baseLayout = GetBaseLayout();
             baseLayout.Click();
             Assert.That(baseLayout.Displayed, Is.EqualTo(true), "Base app element not visible. Test cannot continue");
             string fabAddNoteId = "Create a note";
@@ -57,15 +82,15 @@ namespace MobileAutomationNotes
             {
                 var childButton = speedDialList.FindElement(By.Id("com.google.android.keep:id/new_note_button"));
                 string index = childButton.GetAttribute("index");
-                //Convert.ToInt32(index);
+                int indexInt = Convert.ToInt32(index);
                 //Assert.That(index, Is.EqualTo("4"), $"Button {childButton} not at the expected index ");
-                Assert.AreEqual("4", index, $"Button {childButton} not found at the expected index.");
+                Assert.AreEqual(4, indexInt, $"Button {childButton} not found at the expected index.");
                 childButton.Click();
             }
             catch (NoSuchElementException)
             {
 
-                //throw;
+               
             }
             AppiumElement editableTitle = baseLayout.FindElement(By.Id("com.google.android.keep:id/editable_title"));
             editableTitle.Click();
@@ -74,7 +99,7 @@ namespace MobileAutomationNotes
             string actualTitle = editableTitle.GetAttribute("text");
             Assert.That(sampleTitle, Is.EqualTo(actualTitle));
             AppiumElement editableNote = baseLayout.FindElement(By.Id("com.google.android.keep:id/edit_note_text"));
-            string sampleBody = "Autiomation test note body";
+            string sampleBody = "Automation test note body";
             editableNote.SendKeys(sampleBody);
             string actualBody = editableNote.GetAttribute("text");
             Assert.That(sampleBody, Is.EqualTo(actualBody));
@@ -84,7 +109,7 @@ namespace MobileAutomationNotes
         [Test, Order(2)]
         public void DeleteNoteTest() 
         {
-            AppiumElement baseLayout = _driver.FindElement(By.XPath("//android.widget.LinearLayout[@resource-id='com.google.android.keep:id / action_bar_root']"));
+            AppiumElement baseLayout = GetBaseLayout();
             baseLayout.Click();
             Assert.That(baseLayout.Displayed, Is.EqualTo(true), "Base app element not visible. Test cannot continue");
             var noteElements = baseLayout.FindElements(By.Id("com.google.android.keep:id/browse_note_interior_content"));
@@ -104,17 +129,17 @@ namespace MobileAutomationNotes
             recyclerViewDelete.Click();
             Assert.IsFalse(
                 title1.Displayed && body1.Displayed,
-                "Either element1 or elemen2 is not displayed"
+                "Either element1 or element2 is not displayed"
             );
-
-
-
 
         }
         
         [Test, Order(3)]
         public void EditTextNoteTest()
         {
+            AppiumElement baseLayout = GetBaseLayout();
+            baseLayout.Click();
+
 
         }
 
@@ -127,7 +152,7 @@ namespace MobileAutomationNotes
         [TearDown]
         public void TearDown()
         {
-
+            _driver.Navigate().Back();
         }
 
         [OneTimeTearDown]
